@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico de Versões - Controle Financeiro</title>
+    <!-- Favicon Exclusivo do Changelog -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='15' fill='%2322c55e'/%3E%3Cpath fill='white' d='M30,35h40v5H30z M30,50h40v5H30z M30,65h40v5H30z'/%3E%3C/svg%3E">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cl-bg-light: #f8fafc;
+            --cl-text-light: #334155;
+            --cl-card-bg-light: #ffffff;
+            --cl-border-light: #e2e8f0;
+            --cl-title-light: #1e293b;
+            --cl-version-light: #1d4ed8;
+            --cl-date-light: #64748b;
+            --cl-feature-title-light: #0f766e;
+            --cl-bug-title-light: #be123c;
+            --cl-improvement-title-light: #c2410c;
+
+            --cl-bg-dark: #0f172a;
+            --cl-text-dark: #cbd5e1;
+            --cl-card-bg-dark: #1e293b;
+            --cl-border-dark: #334155;
+            --cl-title-dark: #f1f5f9;
+            --cl-version-dark: #60a5fa;
+            --cl-date-dark: #94a3b8;
+            --cl-feature-title-dark: #2dd4bf;
+            --cl-bug-title-dark: #fb7185;
+            --cl-improvement-title-dark: #fb923c;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--cl-bg-light);
+            color: var(--cl-text-light);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        body.dark-cl {
+            background-color: var(--cl-bg-dark);
+            color: var(--cl-text-dark);
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            border-left: 3px solid var(--cl-border-light);
+        }
+        body.dark-cl .timeline {
+            border-left-color: var(--cl-border-dark);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            background-color: var(--cl-card-bg-light);
+            border: 1px solid var(--cl-border-light);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        body.dark-cl .timeline-item {
+            background-color: var(--cl-card-bg-dark);
+            border-color: var(--cl-border-dark);
+        }
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -51.5px; /* Ajuste para centralizar */
+            top: 25px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--cl-version-light);
+            border: 3px solid var(--cl-bg-light);
+        }
+        body.dark-cl .timeline-dot {
+            background-color: var(--cl-version-dark);
+            border-color: var(--cl-bg-dark);
+        }
+        .version-header h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--cl-version-light);
+            margin: 0;
+        }
+        body.dark-cl .version-header h2 {
+            color: var(--cl-version-dark);
+        }
+        .version-header time {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--cl-date-light);
+        }
+        body.dark-cl .version-header time {
+            color: var(--cl-date-dark);
+        }
+        .version-content h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-top: 20px;
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+        .version-content ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 10px;
+        }
+        .version-content li {
+            padding-left: 2em;
+            position: relative;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+        .version-content li::before {
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 4px;
+        }
+        .feature-title { color: var(--cl-feature-title-light); }
+        .feature-title + ul li::before { content: '\f005'; color: var(--cl-feature-title-light); } /* Estrela */
+        body.dark-cl .feature-title { color: var(--cl-feature-title-dark); }
+        body.dark-cl .feature-title + ul li::before { color: var(--cl-feature-title-dark); }
+        
+        .bug-title { color: var(--cl-bug-title-light); }
+        .bug-title + ul li::before { content: '\f00d'; color: var(--cl-bug-title-light); } /* X (close) */
+        body.dark-cl .bug-title { color: var(--cl-bug-title-dark); }
+        body.dark-cl .bug-title + ul li::before { color: var(--cl-bug-title-dark); }
+        
+        .improvement-title { color: var(--cl-improvement-title-light); }
+        .improvement-title + ul li::before { content: '\f067'; color: var(--cl-improvement-title-light); } /* Plus */
+        body.dark-cl .improvement-title { color: var(--cl-improvement-title-dark); }
+        body.dark-cl .improvement-title + ul li::before { color: var(--cl-improvement-title-dark); }
+
+        #clThemeToggleButton { position: fixed; top: 20px; right: 20px; background-color: var(--cl-card-bg-light); color: var(--cl-text-light); border: 1px solid var(--cl-border-light); border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.2); z-index: 1001; transition: all 0.3s; }
+        body.dark-cl #clThemeToggleButton { background-color: var(--cl-card-bg-dark); color: var(--cl-text-dark); border-color: var(--cl-border-dark); }
+        
+        .main-header-title { color: var(--cl-title-light); }
+        body.dark-cl .main-header-title { color: var(--cl-title-dark); }
+        .main-header-subtitle { color: var(--cl-date-light); }
+        body.dark-cl .main-header-subtitle { color: var(--cl-date-dark); }
+    </style>
+</head>
+<body class="dark-cl">
+    <div class="container">
+        <header class="text-center mb-12">
+            <h1 class="text-5xl font-extrabold main-header-title"><i class="fas fa-history"></i> Histórico de Versões</h1>
+            <p class="text-xl mt-2 main-header-subtitle">Acompanhe a evolução do seu aplicativo Controle Financeiro.</p>
+        </header>
+
+        <div class="timeline">
+            <!-- Versão 4.0.0 (ATUALIZADA) -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="version-header">
+                    <h2>Versão 4.0.0</h2>
+                    <time>19 de junho de 2025</time>
+                </div>
+                <div class="version-content">
+                    <h3 class="feature-title">✨ Novas Funcionalidades</h3>
+                    <ul>
+                        <li><strong>Painel Acordeão Inteligente:</strong> O seletor de meses foi completamente redesenhado. Agora é um painel compacto que se expande para uma visão anual, mostrando pendências e alertas em vez de saldos, para uma experiência de usuário mais limpa e focada na ação.</li>
+                        <li><strong>Gerenciador de Orçamento Mensal:</strong> Adicionada uma nova ferramenta para definir tetos de gastos por categoria, com barras de progresso visuais para acompanhar o consumo do orçamento em tempo real.</li>
+                        <li><strong>Gerenciador de Cartões de Crédito:</strong> Agora é possível cadastrar múltiplos cartões de crédito, informando nome, banco, e as importantes datas de fechamento e vencimento.</li>
+                        <li><strong>Visualizador de Faturas:</strong> Uma nova tela que utiliza os dados dos cartões cadastrados para agrupar despesas em "Fatura Fechada" e "Fatura Aberta", calculando totais e vencimentos automaticamente.</li>
+                        <li><strong>Amortização de Dívidas:</strong> Implementada a funcionalidade de "Amortizar" em parcelamentos, que permite abater o saldo devedor com um pagamento extra e recalcula automaticamente o valor das parcelas futuras.</li>
+                    </ul>
+
+                    <h3 class="improvement-title">🔧 Melhorias Estruturais e de Usabilidade</h3>
+                    <ul>
+                        <li><strong>Vinculação de Dívidas a Cartões:</strong> O formulário de parcelamentos agora permite associar uma dívida a um cartão de crédito específico, alimentando o novo Visualizador de Faturas.</li>
+                        <li><strong>Status de Pagamento "Conciliado":</strong> Adicionado o status "Conciliado" para despesas, oferecendo um nível de controle profissional para garantir que os saldos da planilha correspondam perfeitamente ao extrato bancário.</li>
+                        <li><strong>Interface de Lançamentos:</strong> Otimizado o layout de diversos modais, incluindo o de transações, para garantir que os botões de ação permaneçam sempre visíveis, mesmo em telas com conteúdo extenso.</li>
+                    </ul>
+
+                     <h3 class="bug-title">🐞 Correções de Bugs</h3>
+                     <ul>
+                         <li>Resolvido um problema de layout onde os últimos meses no seletor de meses ficavam cortados em telas menores ou com zoom.</li>
+                         <li>Corrigidos diversos elementos da interface que não respondiam corretamente à troca para o Modo Escuro, garantindo consistência visual em ambos os temas.</li>
+                     </ul>
+                </div>
+            </div>
+
+            <!-- Versão 3.2.0 -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="version-header">
+                    <h2>Versão 3.2.0</h2>
+                    <time>16 de junho de 2025</time>
+                </div>
+                <div class="version-content">
+                    <h3 class="feature-title">✨ Novo Recurso Principal: Gestão de Fluxo de Caixa com Múltiplas Contas</h3>
+                    <ul>
+                        <li>Implementada a capacidade de <strong>criar e gerenciar múltiplas contas financeiras</strong> (ex: conta corrente, carteira, poupança).</li>
+                        <li>Cada lançamento de receita e despesa agora é vinculado a uma conta específica, refletindo com precisão a movimentação do dinheiro.</li>
+                        <li>Introduzido um <strong>Dashboard de Contas</strong> na tela principal, exibindo os saldos atualizados de cada conta em tempo real.</li>
+                        <li>Adicionado um <strong>Extrato de Transferências</strong> dedicado, permitindo visualizar, editar e excluir movimentações entre contas.</li>
+                    </ul>
+
+                    <h3 class="improvement-title">🔧 Melhorias de Controle e Usabilidade</h3>
+                    <ul>
+                        <li>O menu de seleção de contas nos formulários agora exibe o <strong>saldo atualizado</strong> de cada conta, auxiliando na tomada de decisão.</li>
+                        <li>Contas cadastradas agora possuem um <strong>ícone visual</strong> correspondente ao seu tipo (conta corrente, carteira, investimentos, etc.), melhorando a identificação rápida.</li>
+                    </ul>
+                </div>
+            </div>
+        
+            <!-- Histórico de versões anteriores continua aqui... -->
+             <!-- Versão 3.1.0 -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="version-header">
+                    <h2>Versão 3.1.0</h2>
+                    <time>15 de junho de 2025</time>
+                </div>
+                <div class="version-content">
+                     <h3 class="feature-title">✨ Novo Recurso Principal: Amortização de Dívidas (Versão Inicial)</h3>
+                     <ul>
+                         <li>Implementada a funcionalidade de <strong>Amortização</strong>. Agora, é possível fazer pagamentos extras em dívidas parceladas para abater o saldo devedor.</li>
+                         <li>Ao amortizar, o sistema cria uma despesa imediata e recalcula o valor de todas as parcelas futuras, que se tornam mais baixas.</li>
+                     </ul>
+
+                     <h3 class="improvement-title">🔧 Melhorias de Controle e Interface</h3>
+                     <ul>
+                         <li>Adicionado o novo status de pagamento <strong>"Conciliado"</strong>, para um controle financeiro mais preciso, permitindo diferenciar o que foi 'pago' do que já foi 'conferido' no extrato.</li>
+                         <li>Os cards de parcelamento agora exibem a <strong>data do próximo vencimento</strong> e a <strong>data de quitação</strong> da dívida, oferecendo maior clareza no planejamento.</li>
+                     </ul>
+                </div>
+            </div>
+
+            <!-- Versão 3.0.1 -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="version-header">
+                    <h2>Versão 3.0.1</h2>
+                    <time>11 de junho de 2025</time>
+                </div>
+                <div class="version-content">
+                    <h3 class="bug-title">🐞 Correção Crítica: Sincronização de Exclusão</h3>
+                    <ul>
+                        <li>Resolvido um bug crítico onde ao excluir um Parcelamento ou uma Conta Recorrente, as despesas associadas não eram removidas, garantindo agora a integridade total dos dados.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Versão 3.0.0 -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="version-header">
+                    <h2>Versão 3.0.0</h2>
+                    <time>08 de junho de 2025</time>
+                </div>
+                <div class="version-content">
+                    <h3 class="feature-title">✨ Novo Recurso Principal: Ferramenta de Antecipação de Parcelas</h3>
+                    <ul>
+                        <li>Acesse o novo botão <strong>"Antecipar Parcelas"</strong> no detalhe de uma dívida para simular e registrar o pagamento adiantado com desconto sobre os juros.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Versão 2.1.1 -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="version-header">
+                    <h2>Versão 2.1.1</h2>
+                    <time>07 de junho de 2025</time>
+                </div>
+                <div class="version-content">
+                    <h3 class="improvement-title">🔧 Melhoria Radical: Novo "Motor" de Banco de Dados (IndexedDB)</h3>
+                        <ul>
+                            <li>Todo o sistema de armazenamento foi reescrito para usar IndexedDB, tornando o aplicativo mais rápido e robusto. Seus dados antigos são migrados automaticamente.</li>
+                        </ul>
+                </div>
+            </div>
+            
+            <!-- Versão 2.1.0 -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="version-header">
+                    <h2>Versão 2.1.0</h2>
+                    <time>20 de maio de 2025</time>
+                </div>
+                <div class="version-content">
+                    <h3 class="feature-title">✨ Novo: Análise Estratégica de Gastos</h3>
+                    <ul>
+                        <li>Adicionada a capacidade de classificar categorias de despesa como <strong>'Fixa'</strong> ou <strong>'Variável'</strong>.</li>
+                        <li>Implementado um novo gráfico: "Despesas Fixas vs. Variáveis", para uma análise estratégica do seu orçamento.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Versão 2.0.0 -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="version-header">
+                    <h2>Versão 2.0.0</h2>
+                    <time>22 de abril de 2025</time>
+                </div>
+                <div class="version-content">
+                    <h3 class="feature-title">✨ Novo Recurso Principal: Gerenciador de Parcelamentos e Contas Recorrentes</h3>
+                    <ul>
+                        <li>Implementado o gerenciamento completo de dívidas parceladas e contas recorrentes, automatizando a criação de despesas futuras.</li>
+                        <li>Adicionado um Simulador de CDB para projeção de investimentos.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Versão 1.1.0 -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="version-header">
+                    <h2>Versão 1.1.0</h2>
+                    <time>10 de março de 2025</time>
+                </div>
+                <div class="version-content">
+                    <h3 class="improvement-title">🔧 Melhorias de Usabilidade</h3>
+                    <ul>
+                        <li>Introduzido o Tema Escuro (Dark Mode) para melhor conforto visual.</li>
+                        <li>Melhorada a função de exportação de dados para CSV, para maior compatibilidade com o Excel.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Versão 1.0.0 -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="version-header">
+                    <h2>Versão 1.0.0</h2>
+                    <time>15 de fevereiro de 2025</time>
+                </div>
+                <div class="version-content">
+                    <h3 class="feature-title">🚀 Lançamento Inicial</h3>
+                    <ul>
+                        <li>Lançamento da Planilha de Controle Financeiro com navegação entre anos e meses.</li>
+                        <li>Funcionalidades de lançamentos de receitas e despesas com categorias personalizáveis.</li>
+                        <li>Dashboard inicial com gráficos de análise.</li>
+                        <li>Sistema de Backup local via .json.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button id="clThemeToggleButton" title="Alternar Tema">
+        <i id="clThemeIcon" class="fas fa-moon"></i>
+    </button>
+    <script>
+        const clThemeToggleButton = document.getElementById('clThemeToggleButton');
+        const clThemeIcon = document.getElementById('clThemeIcon');
+        const clBody = document.body;
+
+        function applyClTheme(theme) {
+            if (theme === 'dark') {
+                clBody.classList.add('dark-cl');
+                clThemeIcon.classList.remove('fa-sun');
+                clThemeIcon.classList.add('fa-moon');
+            } else {
+                clBody.classList.remove('dark-cl');
+                clThemeIcon.classList.remove('fa-moon');
+                clThemeIcon.classList.add('fa-sun');
+            }
+        }
+        clThemeToggleButton.addEventListener('click', () => {
+            const newTheme = clBody.classList.contains('dark-cl') ? 'light' : 'dark';
+            localStorage.setItem('cl-theme', newTheme);
+            applyClTheme(newTheme);
+        });
+
+        const savedTheme = localStorage.getItem('cl-theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme) {
+            applyClTheme(savedTheme);
+        } else if (systemPrefersDark) {
+            applyClTheme('dark');
+        } else {
+            applyClTheme('light');
+        }
+    </script>
+</body>
+</html>

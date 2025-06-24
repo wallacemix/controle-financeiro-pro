@@ -1,0 +1,20 @@
+===========================================================
+  Bem-vindo ao Controle Financeiro v3.0.1!
+===========================================================
+
+Olá! Obrigado por adquirir o Controle Financeiro.
+
+Para começar, siga estes simples passos:
+
+1. INSTALAÇÃO:
+   - Execute o arquivo "Controle Financeiro Setup 3.0.1.exe".
+   - Siga as instruções do instalador.
+   - AVISO: É normal o Windows exibir um alerta de segurança (SmartScreen). Basta clicar em "Mais informações" e depois em "Executar assim mesmo".
+
+2. DOCUMENTAÇÃO:
+   - Para aprender a usar todos os recursos, abra o arquivo "Manual_do_Usuario.html".
+   - Para ver o histórico de todas as melhorias, abra o "Historico_de_Versoes.html".
+
+Obrigado e bom controle financeiro!
+
+- Wallace Fernandes
