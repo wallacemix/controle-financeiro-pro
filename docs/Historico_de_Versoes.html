@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Histórico de Versões - Controle Financeiro</title>
-    <!-- Favicon Exclusivo do Changelog -->
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='15' fill='%2322c55e'/%3E%3Cpath fill='white' d='M30,35h40v5H30z M30,50h40v5H30z M30,65h40v5H30z'/%3E%3C/svg%3E">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -133,17 +132,17 @@
             top: 4px;
         }
         .feature-title { color: var(--cl-feature-title-light); }
-        .feature-title + ul li::before { content: '\f005'; color: var(--cl-feature-title-light); } /* Estrela */
+        .feature-title + ul li::before { content: '\f005'; color: var(--cl-feature-title-light); }
         body.dark-cl .feature-title { color: var(--cl-feature-title-dark); }
         body.dark-cl .feature-title + ul li::before { color: var(--cl-feature-title-dark); }
         
         .bug-title { color: var(--cl-bug-title-light); }
-        .bug-title + ul li::before { content: '\f00d'; color: var(--cl-bug-title-light); } /* X (close) */
+        .bug-title + ul li::before { content: '\f00d'; color: var(--cl-bug-title-light); }
         body.dark-cl .bug-title { color: var(--cl-bug-title-dark); }
         body.dark-cl .bug-title + ul li::before { color: var(--cl-bug-title-dark); }
         
         .improvement-title { color: var(--cl-improvement-title-light); }
-        .improvement-title + ul li::before { content: '\f067'; color: var(--cl-improvement-title-light); } /* Plus */
+        .improvement-title + ul li::before { content: '\f067'; color: var(--cl-improvement-title-light); }
         body.dark-cl .improvement-title { color: var(--cl-improvement-title-dark); }
         body.dark-cl .improvement-title + ul li::before { color: var(--cl-improvement-title-dark); }
 
@@ -162,9 +161,109 @@
             <h1 class="text-5xl font-extrabold main-header-title"><i class="fas fa-history"></i> Histórico de Versões</h1>
             <p class="text-xl mt-2 main-header-subtitle">Acompanhe a evolução do seu aplicativo Controle Financeiro.</p>
         </header>
+<div class="timeline">
+        <div class="timeline-item">
+    <div class="timeline-dot"></div>
+    <div class="version-header">
+        <h2>Versão 4.4.0</h2>
+        <time>02 de setembro de 2025</time>
+    </div>
+    <div class="version-content">
+        <h3 class="feature-title">✨ Nova Funcionalidade Principal: Laboratório de Estratégia Financeira (IA)</h3>
+        <ul>
+            <li><strong>Evolução do Simulador de CDB:</strong> A antiga calculadora foi substituída por uma poderosa ferramenta de projeção que se integra diretamente com as contas de investimento e poupança do usuário.</li>
+            <li><strong>Projeções com Dados Reais:</strong> O laboratório utiliza o saldo atual da conta e parâmetros de rentabilidade configuráveis (CDI, Prefixado, Poupança) para projetar o valor líquido futuro de investimentos reais, incluindo uma estimativa do Imposto de Renda.</li>
+            <li><strong>Análise Estratégica com IA:</strong> A ferramenta agora calcula a capacidade de economia mensal do usuário e oferece sugestões personalizadas e inteligentes para acelerar o crescimento do patrimônio, transformando a projeção em uma consultoria estratégica.</li>
+        </ul>
 
-        <div class="timeline">
-            <!-- Versão 4.0.0 (ATUALIZADA) -->
+        <h3 class="improvement-title">🔧 Melhorias de Interface e Confiabilidade</h3>
+        <ul>
+            <li><strong>Privacidade Aprimorada:</strong> Adicionado um controle de visibilidade (ícone de olho) para os valores do "Resumo do Ano", permitindo ocultar/mostrar o Patrimônio Líquido, Ativos e Passivos, de forma independente dos Saldos das Contas.</li>
+            <li><strong>Busca da Taxa DI Robusta:</strong> A função de busca da Taxa DI foi reescrita para ser mais resiliente, usando o método nativo do Tauri e tratando falhas de conexão de forma transparente, eliminando o bug do "rendimento zerado".</li>
+        </ul>
+
+        <h3 class="bug-title">🐞 Correções de Bugs Críticos</h3>
+        <ul>
+            <li><strong>Lógica de Faturas de Cartão:</strong> Corrigido um bug crítico onde a primeira parcela de uma compra era lançada na fatura do mês seguinte, garantindo que os vencimentos agora sigam a regra correta do fechamento do cartão.</li>
+            <li><strong>Visualizador de Faturas:</strong> Resolvidas múltiplas inconsistências na exibição das faturas aberta e fechada, que agora mostram os totais e os lançamentos corretos para cada período.</li>
+            <li><strong>Layout do Modal:</strong> Ajustado um espaçamento excessivo no modal de "Gerenciar Cartões de Crédito", tornando a interface mais compacta e profissional.</li>
+        </ul>
+    </div>
+</div>
+        
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="version-header">
+                    <h2>Versão 4.3.0</h2>
+                    <time>31 de agosto de 2025</time>
+                </div>
+                <div class="version-content">
+                    <h3 class="feature-title">✨ Nova Funcionalidade Principal: Análise Avançada</h3>
+                    <ul>
+                        <li><strong>Módulo de Análise Avançada:</strong> Implementada uma nova tela de análise focada, permitindo investigar os dados por Categoria ou Tag dentro de um período específico (anual ou total).</li>
+                        <li><strong>Relatórios Detalhados:</strong> A nova ferramenta exibe KPIs (Key Performance Indicators) como valor total, média mensal e número de transações para qualquer item selecionado.</li>
+                        <li><strong>Visualização de Dados:</strong> Além dos KPIs, a análise gera um gráfico de evolução mensal e uma tabela detalhada com todos os lançamentos correspondentes, oferecendo uma visão completa e aprofundada.</li>
+                    </ul>
+
+                    <h3 class="improvement-title">🔧 Melhorias de Usabilidade</h3>
+                    <ul>
+                        <li><strong>Tags para Projetos:</strong> A funcionalidade de "tags" agora se torna uma poderosa ferramenta de gestão, permitindo que o usuário agrupe despesas e receitas por projetos ou eventos específicos (ex: #reforma-casa, #viagem-2025) e analise o custo/lucro total de forma precisa.</li>
+                        <li><strong>Navegação Intuitiva:</strong> A nova tela é acessada por um botão contextual na seção de gráficos, mantendo a interface principal limpa e organizada.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="version-header">
+                    <h2>Versão 4.2.0</h2>
+                    <time>27 de agosto de 2025</time>
+                </div>
+                <div class="version-content">
+                    <h3 class="feature-title">✨ Novas Funcionalidades: Gestão de Cobranças</h3>
+                    <ul>
+                        <li><strong>Módulo de Contas a Receber:</strong> Implementado um sistema completo para registrar e gerenciar receitas futuras. Agora é possível lançar uma receita com o status "A Receber", que não impacta o saldo até ser marcada como "Recebida".</li>
+                        <li><strong>Dashboard de Cobranças:</strong> A tela principal agora exibe cards dinâmicos para "A Receber (Futuro)" e "Vencido", oferecendo uma visão clara e imediata das pendências.</li>
+                        <li><strong>Alertas Inteligentes (IA):</strong> Adicionado um novo painel de alertas proativos que avisa sobre contas a receber que estão vencidas, vencem hoje, amanhã ou nos próximos 7 dias. Os alertas são contextuais e aparecem apenas no mês de vencimento da conta.</li>
+                    </ul>
+
+                    <h3 class="bug-title">🐞 Correções de Bugs Críticos</h3>
+                    <ul>
+                        <li><strong>Correção da Lógica Temporal:</strong> Resolvido um bug crítico onde os cards de "Contas a Receber" e os "Alertas Inteligentes" apareciam incorretamente em meses passados ou futuros. A exibição agora respeita estritamente o mês de visualização.</li>
+                        <li><strong>Atualização em Tempo Real:</strong> Implementado um sistema de notificação de estado (Observer Pattern) que garante que a interface gráfica seja atualizada instantaneamente após a criação, edição ou exclusão de qualquer transação, eliminando a necessidade de recarregar a página manualmente.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="version-header">
+                    <h2>Versão 4.1.0</h2>
+                    <time>28 de junho de 2025</time>
+                </div>
+                <div class="version-content">
+                    <h3 class="feature-title">✨ Novas Funcionalidades de Elite</h3>
+                    <ul>
+                        <li><strong>Lançamento Inteligente de Rendimentos:</strong> Nova ferramenta em "Ferramentas" que permite lançar os rendimentos de contas de poupança/investimento de forma rápida e precisa, garantindo que o patrimônio cresça corretamente ao longo do tempo.</li>
+                        <li><strong>Amortização Reversível (Estorno):</strong> A funcionalidade de Amortização agora é totalmente segura. Ao excluir uma despesa de amortização, o sistema automaticamente estorna a operação e restaura o valor original das parcelas afetadas.</li>
+                    </ul>
+
+                    <h3 class="improvement-title">🔧 Melhorias de Interface e Usabilidade</h3>
+                    <ul>
+                        <li><strong>Painel de Lembretes Aprimorado:</strong> O painel "Lembretes de Contas do Mês" agora é mais compacto e inteligente, exibindo apenas as 3 contas mais urgentes (a vencer nos próximos 15 dias) e um botão "Mostrar mais" para ver todas as outras.</li>
+                        <li><strong>Informação de Compra na Fatura:</strong> O "Visualizador de Faturas" agora exibe o valor total da compra original junto com os detalhes de cada parcela, fornecendo um contexto financeiro mais completo.</li>
+                    </ul>
+                    
+                    <h3 class="bug-title">🐞 Correções de Estabilidade Pós-Modularização</h3>
+                    <ul>
+                        <li>Corrigida a lógica do "Visualizador de Faturas" para exibir corretamente as parcelas de cada período e calcular o total da fatura, resolvendo o bug de agrupamento incorreto.</li>
+                        <li>Resolvido um bug crítico que impedia o funcionamento do botão de ocultar/desocultar os "Saldos das Contas".</li>
+                        <li>Restaurada a funcionalidade do seletor de "Ano Anterior/Próximo Ano".</li>
+                        <li>Corrigida a lógica de exibição para impedir que contas recorrentes e parcelamentos futuros aparecessem nos painéis de meses passados.</li>
+                        <li>Resolvidos múltiplos erros de importação entre módulos que causavam a quebra de diversas funcionalidades após a refatoração.</li>
+                    </ul>
+                </div>
+            </div>
+            
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="version-header">
@@ -187,16 +286,15 @@
                         <li><strong>Status de Pagamento "Conciliado":</strong> Adicionado o status "Conciliado" para despesas, oferecendo um nível de controle profissional para garantir que os saldos da planilha correspondam perfeitamente ao extrato bancário.</li>
                         <li><strong>Interface de Lançamentos:</strong> Otimizado o layout de diversos modais, incluindo o de transações, para garantir que os botões de ação permaneçam sempre visíveis, mesmo em telas com conteúdo extenso.</li>
                     </ul>
-
-                     <h3 class="bug-title">🐞 Correções de Bugs</h3>
-                     <ul>
-                         <li>Resolvido um problema de layout onde os últimos meses no seletor de meses ficavam cortados em telas menores ou com zoom.</li>
-                         <li>Corrigidos diversos elementos da interface que não respondiam corretamente à troca para o Modo Escuro, garantindo consistência visual em ambos os temas.</li>
-                     </ul>
+                    
+                    <h3 class="bug-title">🐞 Correções de Bugs</h3>
+                    <ul>
+                        <li>Resolvido um problema de layout onde os últimos meses no seletor de meses ficavam cortados em telas menores ou com zoom.</li>
+                        <li>Corrigidos diversos elementos da interface que não respondiam corretamente à troca para o Modo Escuro, garantindo consistência visual em ambos os temas.</li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- Versão 3.2.0 -->
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="version-header">
@@ -211,17 +309,9 @@
                         <li>Introduzido um <strong>Dashboard de Contas</strong> na tela principal, exibindo os saldos atualizados de cada conta em tempo real.</li>
                         <li>Adicionado um <strong>Extrato de Transferências</strong> dedicado, permitindo visualizar, editar e excluir movimentações entre contas.</li>
                     </ul>
-
-                    <h3 class="improvement-title">🔧 Melhorias de Controle e Usabilidade</h3>
-                    <ul>
-                        <li>O menu de seleção de contas nos formulários agora exibe o <strong>saldo atualizado</strong> de cada conta, auxiliando na tomada de decisão.</li>
-                        <li>Contas cadastradas agora possuem um <strong>ícone visual</strong> correspondente ao seu tipo (conta corrente, carteira, investimentos, etc.), melhorando a identificação rápida.</li>
-                    </ul>
                 </div>
             </div>
-        
-            <!-- Histórico de versões anteriores continua aqui... -->
-             <!-- Versão 3.1.0 -->
+            
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="version-header">
@@ -229,21 +319,20 @@
                     <time>15 de junho de 2025</time>
                 </div>
                 <div class="version-content">
-                     <h3 class="feature-title">✨ Novo Recurso Principal: Amortização de Dívidas (Versão Inicial)</h3>
-                     <ul>
-                         <li>Implementada a funcionalidade de <strong>Amortização</strong>. Agora, é possível fazer pagamentos extras em dívidas parceladas para abater o saldo devedor.</li>
-                         <li>Ao amortizar, o sistema cria uma despesa imediata e recalcula o valor de todas as parcelas futuras, que se tornam mais baixas.</li>
-                     </ul>
+                    <h3 class="feature-title">✨ Novo Recurso Principal: Amortização de Dívidas (Versão Inicial)</h3>
+                    <ul>
+                        <li>Implementada a funcionalidade de <strong>Amortização</strong>. Agora, é possível fazer pagamentos extras em dívidas parceladas para abater o saldo devedor.</li>
+                        <li>Ao amortizar, o sistema cria uma despesa imediata e recalcula o valor de todas as parcelas futuras, que se tornam mais baixas.</li>
+                    </ul>
 
-                     <h3 class="improvement-title">🔧 Melhorias de Controle e Interface</h3>
-                     <ul>
-                         <li>Adicionado o novo status de pagamento <strong>"Conciliado"</strong>, para um controle financeiro mais preciso, permitindo diferenciar o que foi 'pago' do que já foi 'conferido' no extrato.</li>
-                         <li>Os cards de parcelamento agora exibem a <strong>data do próximo vencimento</strong> e a <strong>data de quitação</strong> da dívida, oferecendo maior clareza no planejamento.</li>
-                     </ul>
+                    <h3 class="improvement-title">🔧 Melhorias de Controle e Interface</h3>
+                    <ul>
+                        <li>Adicionado o novo status de pagamento <strong>"Conciliado"</strong>, para um controle financeiro mais preciso, permitindo diferenciar o que foi 'pago' do que já foi 'conferido' no extrato.</li>
+                        <li>Os cards de parcelamento agora exibem a <strong>data do próximo vencimento</strong> e a <strong>data de quitação</strong> da dívida, oferecendo maior clareza no planejamento.</li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- Versão 3.0.1 -->
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="version-header">
@@ -258,7 +347,6 @@
                 </div>
             </div>
             
-            <!-- Versão 3.0.0 -->
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="version-header">
@@ -273,7 +361,6 @@
                 </div>
             </div>
             
-            <!-- Versão 2.1.1 -->
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="version-header">
@@ -288,7 +375,6 @@
                 </div>
             </div>
             
-            <!-- Versão 2.1.0 -->
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="version-header">
@@ -304,7 +390,6 @@
                 </div>
             </div>
 
-            <!-- Versão 2.0.0 -->
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="version-header">
@@ -320,7 +405,6 @@
                 </div>
             </div>
 
-            <!-- Versão 1.1.0 -->
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="version-header">
@@ -336,7 +420,6 @@
                 </div>
             </div>
 
-            <!-- Versão 1.0.0 -->
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="version-header">
@@ -354,6 +437,9 @@
                 </div>
             </div>
         </div>
+    </div>
+        
+    </div>
     </div>
     <button id="clThemeToggleButton" title="Alternar Tema">
         <i id="clThemeIcon" class="fas fa-moon"></i>
