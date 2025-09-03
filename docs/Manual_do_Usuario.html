@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manual do Usuário - Controle Financeiro v4.0.0</title>
+    <title>Manual do Usuário - Controle Financeiro v4.4.0</title>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='15' fill='%230ea5e9'/%3E%3Cpath fill='white' d='M85,82.2H24.3c-2.9,0-5.3-2.4-5.3-5.3V23.1c0-2.9,2.4-5.3,5.3-5.3H85V82.2z M24.3,20.8c-1.3,0-2.3,1-2.3,2.3v53.8c0,1.3,1,2.3,2.3,2.3H82V20.8H24.3z'%3E%3C/path%3E%3Cpath fill='white' d='M76.5,17.8H20.8c-2.9,0-5.3,2.4-5.3,5.3v50.8h3V23.1c0-1.3,1-2.3,2.3-2.3h55.7V17.8z'%3E%3C/path%3E%3C/svg%3E">
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -33,6 +33,9 @@
             --doc-note-bg-light: #fefce8;
             --doc-note-border-light: #facc15;
             --doc-note-strong-light: #a16207;
+            --doc-success-bg-light: #f0fdf4;
+            --doc-success-border-light: #22c55e;
+            --doc-success-strong-light: #15803d;
             --doc-alert-bg-light: #fee2e2;
             --doc-alert-border-light: #f87171;
             --doc-alert-strong-light: #b91c1c;
@@ -60,6 +63,9 @@
             --doc-note-bg-dark: #422006;
             --doc-note-border-dark: #f59e0b;
             --doc-note-strong-dark: #fbbf24;
+            --doc-success-bg-dark: #052e16;
+            --doc-success-border-dark: #22c55e;
+            --doc-success-strong-dark: #4ade80;
             --doc-alert-bg-dark: #450a0a;
             --doc-alert-border-dark: #ef4444;
             --doc-alert-strong-dark: #fca5a5;
@@ -109,6 +115,11 @@
         .note-block strong { color: var(--doc-note-strong-light); }
         body.dark-doc .note-block strong { color: var(--doc-note-strong-dark); }
 
+        .success-block { background-color: var(--doc-success-bg-light); border-left: 5px solid var(--doc-success-border-light); padding: 15px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+        body.dark-doc .success-block { background-color: var(--doc-success-bg-dark); border-left-color: var(--doc-success-border-dark); }
+        .success-block strong { color: var(--doc-success-strong-light); }
+        body.dark-doc .success-block strong { color: var(--doc-success-strong-dark); }
+
         .alert-block { background-color: var(--doc-alert-bg-light); border-left: 5px solid var(--doc-alert-border-light); padding: 15px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
         body.dark-doc .alert-block { background-color: var(--doc-alert-bg-dark); border-left-color: var(--doc-alert-border-dark); }
         .alert-block strong { color: var(--doc-alert-strong-light); }
@@ -152,7 +163,9 @@
                     <li><a href="#introducao" class="active-section"><i class="fas fa-rocket"></i>Introdução</a></li>
                     <li><a href="#primeiros-passos"><i class="fas fa-shoe-prints"></i>Primeiros Passos</a></li>
                     <li><a href="#funcionalidades"><i class="fas fa-list-check"></i>Funcionalidades</a></li>
+                    <li><a href="#contas-a-receber" style="padding-left: 40px;"><i class="fas fa-hand-holding-usd"></i>Contas a Receber</a></li>
                     <li><a href="#analise"><i class="fas fa-chart-pie"></i>Análise e Ferramentas</a></li>
+                    <li><a href="#analise-avancada" style="padding-left: 40px;"><i class="fas fa-search-dollar"></i>Análise Avançada</a></li>
                     <li><a href="#seguranca"><i class="fas fa-shield-halved"></i>Segurança e Backup</a></li>
                     <li><a href="#faq"><i class="fas fa-circle-question"></i>FAQ</a></li>
                     <li><a href="#suporte"><i class="fas fa-headset"></i>Suporte</a></li>
@@ -163,7 +176,7 @@
         <main id="main-content">
             <header class="text-center py-8 bg-white dark:bg-slate-800/50 shadow-md rounded-lg mb-10">
                 <h1 class="text-5xl font-extrabold text-sky-500 dark:text-sky-400">Controle Financeiro</h1>
-                <p class="text-xl text-slate-600 dark:text-slate-300 mt-2">Manual do Usuário v4.0.0</p>
+                <p class="text-xl text-slate-600 dark:text-slate-300 mt-2">Manual do Usuário v4.4.0</p>
             </header>
 
             <div id="no-results" class="hidden text-center p-10 bg-yellow-100 dark:bg-yellow-900/50 rounded-lg">
@@ -190,6 +203,7 @@
                     <ul>
                         <li>Vá até o painel <code class="code-highlight">Configurações</code> e clique em <code class="code-highlight">Gerenciar Contas</code>.</li>
                         <li>Cadastre todas as suas contas, definindo um <strong>Nome</strong>, um <strong>Saldo Inicial</strong> (o valor que a conta possui no momento do cadastro) e um <strong>Tipo</strong>. O tipo definirá o ícone visual da conta no seu dashboard.</li>
+                        <li>Para contas do tipo <code class="code-highlight">Poupança</code> ou <code class="code-highlight">Investimentos</code>, marque a opção <strong>"Habilitar lançamento de rendimentos"</strong>. Isso permitirá usar a ferramenta de lançamento inteligente de rendimentos.</li>
                     </ul>
                     <h3><i class="fas fa-2"></i> Passo 2: Personalize Suas Categorias</h3>
                     <p>O sistema vem com categorias padrão, mas o ideal é que você as personalize para a sua realidade.</p>
@@ -198,7 +212,7 @@
                         <li>Adicione ou remova categorias de <strong>Receita</strong> e <strong>Despesa</strong>.</li>
                         <li>Para despesas, classifique cada categoria como <strong>Fixa</strong> (ex: Aluguel, mensalidades) ou <strong>Variável</strong> (ex: Restaurantes, lazer). Isso é vital para os gráficos de análise.</li>
                     </ul>
-                     <h3><i class="fas fa-3"></i> Passo 3: Faça Seu Primeiro Lançamento</h3>
+                    <h3><i class="fas fa-3"></i> Passo 3: Faça Seu Primeiro Lançamento</h3>
                     <p>Agora que o sistema está configurado, você está pronto para registrar suas transações.</p>
                     <ul>
                         <li>Na visão do mês, clique no botão <code class="code-highlight">+ Nova</code> na seção de Receitas ou Despesas.</li>
@@ -210,6 +224,18 @@
                 <section id="funcionalidades" class="content-section">
                     <h2><i class="fas fa-list-check"></i>Funcionalidades Detalhadas</h2>
 
+                    <h3 id="contas-a-receber"><i class="fas fa-hand-holding-usd"></i>Contas a Receber: Gerencie Suas Cobranças</h3>
+                    <p>Esta funcionalidade é essencial para profissionais autônomos e freelancers. Ela permite que você registre valores que ainda não recebeu, mantendo um controle claro do seu fluxo de caixa futuro.</p>
+                    <ul>
+                        <li><strong>Como registrar:</strong> Ao adicionar uma nova receita, mude o campo <code class="code-highlight">Status da Receita</code> de "Recebido" para <code class="code-highlight">A Receber</code>.</li>
+                        <li><strong>Como funciona:</strong> Uma receita "A Receber" <strong>não afeta o saldo</strong> das suas contas. Ela é um lembrete de um valor futuro.</li>
+                        <li><strong>Dashboard Inteligente:</strong> Na tela principal, aparecerão cards de resumo para suas contas a receber. Um card <code class="code-highlight">A Receber (Futuro)</code> mostrará os valores que ainda vencerão, enquanto um card <code class="code-highlight">Vencido</code> (em vermelho) mostrará cobranças que já passaram da data e ainda não foram recebidas.</li>
+                        <li><strong>Gerenciamento:</strong> Clicando em qualquer um desses cards, você abre o gerenciador, onde pode visualizar todas as suas pendências e, com um clique, marcar uma conta como <code class="code-highlight">Receber</code>. Ao fazer isso, o status da transação muda para "Recebido", e o valor é efetivamente adicionado ao saldo da conta correspondente.</li>
+                    </ul>
+                    <div class="success-block">
+                        <strong><i class="fas fa-bolt"></i> Dica de Profissional:</strong> Os cards de Contas a Receber são sensíveis ao tempo. Eles só aparecerão no mês atual ou em meses futuros. Você não verá um lembrete de uma conta de Agosto ao visualizar o relatório de Julho.
+                    </div>
+
                     <h3><i class="fas fa-exchange-alt"></i>Transferências entre Contas</h3>
                     <p>Mover dinheiro de uma conta para outra (ex: sacar dinheiro do banco para a carteira) não é uma despesa. Use a ferramenta correta para isso.</p>
                     <ul>
@@ -217,7 +243,17 @@
                         <li>Selecione a conta de <strong>Origem</strong> (de onde o dinheiro saiu) e a de <strong>Destino</strong> (para onde o dinheiro foi) e o valor.</li>
                         <li>Todas as transferências do mês aparecerão no extrato "<strong>Transferências do Mês</strong>", onde você pode visualizar, editar ou excluir o registro a qualquer momento.</li>
                     </ul>
-
+                    
+                    <h3><i class="fas fa-chart-line"></i>Lançamento Inteligente de Rendimentos</h3>
+                    <p>Para contas de Poupança e Investimentos, registrar os rendimentos é crucial para ver seu patrimônio crescer. A planilha simplifica este processo.</p>
+                    <ul>
+                        <li>Primeiro, certifique-se de que a opção "Habilitar lançamento de rendimentos" está marcada para a conta desejada (veja o Passo 1 em "Primeiros Passos").</li>
+                        <li>Uma vez por mês, consulte seu extrato bancário e some os rendimentos creditados.</li>
+                        <li>Na planilha, vá em <code class="code-highlight">Ferramentas > Lançar Rendimentos</code>.</li>
+                        <li>No modal, selecione a conta, insira o <strong>valor total</strong> que você somou e a data do crédito.</li>
+                        <li>Ao confirmar, o sistema criará uma nova <strong>receita</strong> na categoria "Rendimentos", atualizando o saldo da sua conta automaticamente.</li>
+                    </ul>
+                    
                     <h3><i class="fas fa-sync-alt"></i>Automação: Contas Recorrentes</h3>
                     <p>Para despesas que se repetem todo mês (aluguel, assinaturas, mensalidades), cadastre-as uma única vez e deixe que o sistema faça o trabalho por você.</p>
                     <ul>
@@ -226,21 +262,11 @@
                         <li>A cada novo mês, o aplicativo criará automaticamente a despesa correspondente como "Pendente", pronta para você confirmar o pagamento.</li>
                     </ul>
 
-                    <!-- SEÇÃO NOVA ADICIONADA -->
-                    <h3><i class="fas fa-bullseye"></i>Definindo um Orçamento Mensal</h3>
-                    <p>Tenha controle total sobre para onde seu dinheiro deve ir. A ferramenta de orçamento permite que você defina limites de gastos para cada categoria de despesa no mês corrente.</p>
-                    <ul>
-                        <li>Acesse <code class="code-highlight">Ferramentas > Gerenciar Orçamento do Mês</code>.</li>
-                        <li>Na tela que se abre, insira o valor máximo que você planeja gastar para cada categoria. Deixe em branco ou com "0" para não definir um limite.</li>
-                        <li>Ao salvar, o aplicativo exibirá barras de progresso na visão do mês, mostrando o quanto você já gastou em relação ao que foi orçado, ajudando a não estourar o orçamento.</li>
-                    </ul>
-
-                    <!-- SEÇÃO NOVA ADICIONADA -->
                     <h3><i class="fas fa-id-card"></i>Gerenciador de Cartões de Crédito</h3>
                     <p>Para um controle ainda mais detalhado das suas dívidas, você pode cadastrar seus cartões de crédito antes de lançar os parcelamentos.</p>
                     <ul>
                         <li>Vá até <code class="code-highlight">Configurações > Gerenciar Cartões de Crédito</code>.</li>
-                        <li>Adicione seus cartões informando um nome para fácil identificação (ex: "NuBank Platinum"), o banco (opcional), os 4 últimos dígitos, o <strong>dia do fechamento</strong> e o <strong>dia do vencimento</strong> da fatura.</li>
+                        <li>Adicione seus cartões informando um nome, banco (opcional), os 4 últimos dígitos, o <strong>dia do fechamento</strong> e o <strong>dia do vencimento</strong> da fatura.</li>
                         <li>Uma vez cadastrados, eles aparecerão como uma opção ao registrar um novo parcelamento.</li>
                     </ul>
 
@@ -252,9 +278,9 @@
                         <li>No campo <code class="code-highlight">Cartão de Crédito</code>, selecione o cartão que você cadastrou no passo anterior. O sistema usará as datas do cartão para lançar as parcelas nas faturas corretas.</li>
                         <li>O sistema calculará o valor da parcela e criará todas as despesas futuras nos meses correspondentes.</li>
                     </ul>
-                    <div class="note-block">
-                        <strong><i class="fas fa-bolt"></i> Dica de Profissional: Amortização de Dívidas</strong><br>
-                        Tem um dinheiro extra e quer diminuir uma dívida? No card do parcelamento, clique em <code class="code-highlight">Amortizar</code> (<i class="fas fa-dollar-sign"></i>). Ao informar um valor, a planilha cria uma despesa imediata e <strong>recalcula o valor de todas as parcelas futuras</strong>, que ficarão mais baixas.
+                    <div class="success-block">
+                        <strong><i class="fas fa-bolt"></i> Dica de Profissional: Amortização e Estorno</strong><br>
+                        Tem um dinheiro extra e quer diminuir uma dívida? No card do parcelamento, clique em <code class="code-highlight">Amortizar</code> (<i class="fas fa-dollar-sign"></i>). Ao informar um valor, a planilha cria uma despesa imediata e <strong>recalcula o valor de todas as parcelas futuras</strong>. Se você se arrepender, basta excluir a despesa de amortização na tabela principal, e o sistema irá <strong>estornar</strong> a operação, restaurando os valores originais das parcelas automaticamente.
                     </div>
 
                     <h3><i class="fas fa-check-double"></i>Status de Pagamento: O Segredo do Controle</h3>
@@ -268,20 +294,47 @@
 
                 <section id="analise" class="content-section">
                     <h2><i class="fas fa-chart-pie"></i>Análise e Ferramentas</h2>
-                        <h3><i class="fas fa-tachometer-alt"></i>Dashboards e Gráficos</h3>
-                        <p>A planilha oferece múltiplos níveis de análise visual para que você entenda suas finanças de forma intuitiva.</p>
-                         <ul>
-                             <li><strong>Dashboard de Contas:</strong> No topo da tela, veja o saldo atualizado de todas as suas contas, lado a lado.</li>
-                             <li><strong>Resumo Mensal:</strong> Acompanhe os totais de receitas, gastos, pagamentos de dívidas e o saldo final do mês.</li>
-                             <li><strong>Gráficos Detalhados:</strong> Analise suas despesas por categoria, compare receitas e despesas, e entenda a proporção de gastos fixos e variáveis.</li>
-                         </ul>
+                    <h3><i class="fas fa-tachometer-alt"></i>Dashboards e Gráficos</h3>
+                    <p>A planilha oferece múltiplos níveis de análise visual para que você entenda suas finanças de forma intuitiva.</p>
+                    <ul>
+                        <li><strong>Dashboard de Contas:</strong> No topo da tela, veja o saldo atualizado de todas as suas contas, lado a lado.</li>
+                        <li><strong>Alertas de Cobrança (IA):</strong> Um novo painel proativo que aparece automaticamente para te lembrar de contas a receber que estão <strong>vencidas, vencem hoje, amanhã ou nos próximos 7 dias</strong>. Os alertas são contextuais e só aparecem no mês de vencimento da conta.</li>
+                        <li><strong>Lembretes de Contas do Mês:</strong> Um painel inteligente que mostra as próximas 3 contas a vencer nos próximos 15 dias, com um botão para expandir e ver todas, se houver mais.</li>
+                        <li><strong>Resumo Mensal:</strong> Acompanhe os totais de receitas, gastos, pagamentos de dívidas e o saldo final do mês.</li>
+                        <li><strong>Gráficos Detalhados:</strong> Analise suas despesas por categoria, compare receitas e despesas, e entenda a proporção de gastos fixos e variáveis.</li>
+                    </ul>
 
-                        <h3><i class="fas fa-calculator"></i> Ferramentas Financeiras Adicionais</h3>
-                        <p>Além do controle diário, o aplicativo inclui ferramentas para planejamento a longo prazo.</p>
-                        <ul>
-                             <li><strong>Visualizador de Faturas:</strong> Em <code class="code-highlight">Ferramentas > Ver Faturas</code>, você pode selecionar um cartão de crédito e ver todas as compras agrupadas por fatura (aberta e fechada), com o valor total e data de vencimento.</li>
-                            <li><strong>Simulador de CDB:</strong> Projete a rentabilidade de investimentos em Renda Fixa, calculando impostos e o valor final de resgate.</li>
-                        </ul>
+                    <h3 id="analise-avancada"><i class="fas fa-search-dollar"></i>Análise Avançada: Mergulhe nos Seus Dados</h3>
+                    <p>Para ir além dos relatórios mensais, a ferramenta de Análise Avançada permite que você investigue seus gastos e ganhos de forma granular, respondendo a perguntas específicas sobre seus hábitos financeiros.</p>
+                    <ul>
+                        <li><strong>Como Acessar:</strong> Na seção de gráficos do mês, clique no botão <code class="code-highlight"><i class="fas fa-search-dollar mr-2"></i>Análise Avançada</code>.</li>
+                        <li><strong>Como Usar:</strong> Uma tela focada se abrirá. Nela, você pode definir três filtros:
+                            <ol class="list-decimal pl-5 mt-2">
+                                <li><strong>Analisar por:</strong> Escolha se quer investigar por <code class="code-highlight">Categoria</code> ou por <code class="code-highlight">Tag</code>.</li>
+                                <li><strong>Item Específico:</strong> Com base na sua primeira escolha, selecione a categoria (ex: "Supermercado") ou a tag (ex: "viagem-rj") que deseja analisar.</li>
+                                <li><strong>Período:</strong> Defina o escopo da sua análise, que pode ser um ano específico ou todo o período desde o início dos seus registros.</li>
+                            </ol>
+                        </li>
+                        <li><strong>Resultados:</strong> Ao clicar em <code class="code-highlight">Analisar</code>, o sistema exibirá um relatório completo, incluindo o valor total, a média mensal, o número de transações, um gráfico de evolução mensal e a lista detalhada de todos os lançamentos que compõem aquele resultado.</li>
+                    </ul>
+                    <div class="success-block">
+                        <strong><i class="fas fa-bolt"></i> Dica de Profissional:</strong> Use as <strong>tags</strong> para gerenciar projetos ou eventos. Por exemplo, marque todas as despesas da sua reforma com a tag <code class="code-highlight">#reforma-casa</code>. Ao final, use a Análise Avançada para descobrir o custo total exato do seu projeto com apenas alguns cliques.
+                    </div>
+                    <h3><i class="fas fa-calculator"></i> Ferramentas Financeiras Adicionais</h3>
+                    <p>Além do controle diário, o aplicativo inclui ferramentas para planejamento a longo prazo.</p>
+                    <ul>
+                        <li><strong>Visualizador de Faturas:</strong> Em <code class="code-highlight">Ferramentas > Ver Faturas</code>, você pode selecionar um cartão e ver todas as compras agrupadas por fatura (aberta e fechada), com o valor total e data de vencimento.</li>
+                        <li><strong>Orçamento Mensal:</strong> Em <code class="code-highlight">Ferramentas > Gerenciar Orçamento</code>, defina metas de gastos por categoria e acompanhe seu progresso com barras visuais.</li>
+                        <li>
+    <strong>Laboratório de Estratégia:</strong> Uma evolução do antigo simulador. Esta ferramenta projeta o futuro dos seus investimentos <strong>reais</strong>, usando o saldo atual da sua conta e os parâmetros que você definir.
+    <ul style="list-style-type: circle; padding-left: 20px; margin-top: 10px;">
+        <li><strong>Como Usar:</strong> No accordion "Laboratório de Estratégia", selecione uma de suas contas de Poupança ou Investimento.</li>
+        <li><strong>Configuração Única:</strong> Na primeira vez que selecionar uma conta, clique na engrenagem <i class="fas fa-cog"></i> para definir os parâmetros dela (ex: 100% do CDI, Poupança, etc.). Você só precisa fazer isso uma vez por conta.</li>
+        <li><strong>Projeção Realista:</strong> Com a conta configurada, defina uma data futura e clique em <code class="code-highlight">Projetar Rendimentos</code>. A ferramenta calculará o valor bruto, o imposto de renda estimado e o valor líquido final, usando a cotação da Taxa DI mais recente.</li>
+        <li><strong>Análise da IA:</strong> Após a projeção, a inteligência artificial analisa sua capacidade de economia mensal (baseada no seu histórico) e oferece sugestões estratégicas para acelerar seu crescimento.</li>
+    </ul>
+</li>
+                    </ul>
                 </section>
 
                 <section id="seguranca" class="content-section">
@@ -291,8 +344,8 @@
                         <strong><i class="fas fa-download"></i> ATENÇÃO: FAÇA BACKUPS REGULARES!</strong><br>
                         Use a opção <strong>Exportar Backup (.json)</strong> para salvar uma cópia de segurança completa de todos os seus dados. Guarde este arquivo em um local seguro (nuvem, pendrive). Se algo acontecer com seu computador, você poderá restaurar tudo com a opção <strong>Importar Backup</strong>.
                     </div>
-                     <h3><i class="fas fa-key"></i>Segurança com PIN (Apenas na versão Desktop)</h3>
-                     <p>Na versão da planilha empacotada para Windows, você pode definir uma camada extra de segurança. Em <code class="code-highlight">Configurações > Configurar Segurança (PIN)</code>, você pode definir uma senha de 4 dígitos que será solicitada toda vez que o aplicativo for iniciado.</p>
+                    <h3><i class="fas fa-key"></i>Segurança com PIN (Apenas na versão Desktop)</h3>
+                    <p>Na versão da planilha empacotada para Windows, você pode definir uma camada extra de segurança. Em <code class="code-highlight">Configurações > Configurar Segurança (PIN)</code>, você pode definir uma senha de 4 dígitos que será solicitada toda vez que o aplicativo for iniciado.</p>
                 </section>
 
                 <section id="faq" class="content-section">
@@ -348,7 +401,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('currentDocYearFooter').textContent = new Date().getFullYear();
 
-            // --- Gerenciador de Tema Inteligente ---
             const docThemeToggleButton = document.getElementById('docThemeToggleButton');
             const docThemeIcon = document.getElementById('docThemeIcon');
             const docBody = document.body;
@@ -373,16 +425,10 @@
 
             const savedTheme = localStorage.getItem('doc-theme');
             const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme) { applyDocTheme(savedTheme); } 
+            else if (systemPrefersDark) { applyDocTheme('dark'); } 
+            else { applyDocTheme('light'); }
 
-            if (savedTheme) {
-                applyDocTheme(savedTheme);
-            } else if (systemPrefersDark) {
-                applyDocTheme('dark');
-            } else {
-                applyDocTheme('light');
-            }
-
-            // --- Lógica de Navegação e Busca ---
             const links = document.querySelectorAll('#table-of-contents a');
             const sections = document.querySelectorAll('.content-section');
             const mainContent = document.getElementById('main-content');
@@ -411,7 +457,6 @@
             const sectionsContainer = document.getElementById('sections-container');
             const noResultsDiv = document.getElementById('no-results');
             let debounceTimer;
-
             searchInput.addEventListener('input', (e) => {
                 clearTimeout(debounceTimer);
                 debounceTimer = setTimeout(() => {
@@ -427,7 +472,6 @@
                             section.style.display = 'none';
                         }
                     });
-
                     noResultsDiv.classList.toggle('hidden', resultsFound);
                     activateLinkOnScroll();
                 }, 300);
