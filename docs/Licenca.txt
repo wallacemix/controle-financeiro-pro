@@ -11,9 +11,11 @@ Esta licença concede a você, o comprador original, o direito de instalar e usa
 Você não pode alugar, arrendar, vender, redistribuir ou sublicenciar o software. Você não pode copiar (exceto para fins de backup), modificar ou criar trabalhos derivados do software.
 
 3. PROPRIEDADE INTELECTUAL:
-O software é propriedade de Wallace Fernandes e é protegido por leis de direitos autorais. Esta licença não lhe concede a propriedade do software, mas apenas um direito limitado de uso.
+O software é propriedade de Wallace Fernandes (Faro do Investidor) e é protegido por leis de direitos autorais. Esta licença não lhe concede a propriedade do software, mas apenas um direito limitado de uso.
 
 4. ISENÇÃO DE GARANTIA:
 O software é fornecido "COMO ESTÁ", sem garantias de qualquer tipo. O autor não garante que o software atenderá às suas necessidades ou que seu funcionamento será ininterrupto ou livre de erros.
 
 Obrigado por respeitar os termos de uso.
+
+Data de Efeito: 02 de setembro de 2025
